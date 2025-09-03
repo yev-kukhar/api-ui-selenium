@@ -1,10 +1,10 @@
-### UI Automation Framework
-This project is a demonstration of automation testing using Java, Selenide, and JUnit 5. It includes reporting with Allure Report and Maven Wrapper for seamless build management
+### Test Automation Framework
+This project is a demonstration of automation testing using Java, Selenium, and JUnit 5. It includes reporting with Allure Report and Maven Wrapper for seamless build management.
 
 #### Key Technologies:
 * **Java 17**
 * **Maven Wrapper (`mvnw`) 3.6.3**
-* **Selenide 7.9.4**??
+* **Selenium WebDriver 4.34.0**
 * **JUnit 5.13.1**
 * **Allure Report 2.29.0**
 * **Lombok 1.18.38**
@@ -12,29 +12,60 @@ This project is a demonstration of automation testing using Java, Selenide, and 
 
 #### Project Structure (tree):
 ```
+├── LICENSE
 ├── README.md
 ├── mvnw
 ├── mvnw.cmd
 ├── pom.xml
 └── src
-├── main
-│ └── java
-│     └── org
-│         └── yevhenii
-│             ├── BasePage.java
-│             ├── Utils.java
-│             └── GooglePage.java
-└── test
-├── java
-│ └── org
-│     └── yevhenii
-│         ├── UITest.java
-│         ├── UITestSteps.java
-│         └── models
-│             └── User.java
-└── resources
-├── allure.properties
-└── logback-test.xml
+    ├── main
+    │ ├── java
+    │ │ └── org
+    │ │     └── yevhenii
+    │ │         ├── ConfigReader.java
+    │ │         └── api
+    │ │             ├── ApiEngine.java
+    │ │             └── models
+    │ │                 ├── privatbank
+    │ │                 │ ├── ExchangeArchiveResponse.java
+    │ │                 │ ├── ExchangeRate.java
+    │ │                 │ └── MockUserPrivatbank.java
+    │ │                 └── typicode
+    │ │                     └── Post.java
+    │ └── resources
+    │     └── config.properties
+    └── test
+        ├── java
+        │ └── org
+        │     └── yevhenii
+        │         ├── Utils.java
+        │         ├── api_test
+        │         │ ├── JsonServerTest.java
+        │         │ ├── PrivatbankTest.java
+        │         │ ├── TypicodeTest.java
+        │         │ ├── models
+        │         │ │ ├── jsonserver
+        │         │ │ │ └── Book.java
+        │         │ │ ├── privatbank
+        │         │ │ └── typicode
+        │         │ │     ├── AddressModel.java
+        │         │ │     ├── OrderModel.java
+        │         │ │     ├── PostRecordModel.java
+        │         │ │     └── User.java
+        │         │ └── services
+        │         │     ├── ApiServicePrivatbank.java
+        │         │     ├── ApiServiceTypicode.java
+        │         │     └── JsonServer.java
+        │         └── ui_tests
+        │             ├── BaseUiTest.java
+        │             ├── SearchTest.java
+        │             └── pages
+        │                 ├── BasePage.java
+        │                 └── GooglePage.java
+        └── resources
+            ├── allure.properties
+            └── logback-test.xml
+
 ```
 
 ```bash
@@ -107,8 +138,8 @@ This project is a demonstration of automation testing using Java, Selenide, and 
 
 #### A full fake REST API from a single JSON file:
 to install locally:
-1. node -v
-   npm -v  
+1. node -v <br>
+   npm -v  <br>
 2. npm install -g json-server
 3. Create a new file named db.json and put data inside, like:
 `{
@@ -124,7 +155,7 @@ to install locally:
   json-server --watch db.json
   ```
 5. By default, it runs on http://localhost:3000
-6. Available requests: 
+6. Available requests: <br>
 **GET**: Go to http://localhost:3000/posts in your browser to see your data. <br>
 **POST**: request to http://localhost:3000/posts with a new post object in the body. The new post will be added to your db.json file.<br>
 payload example:
